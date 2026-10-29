@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d8edff">
+  <meta name="description" content="Dental — thoughtful dental care, from everyday check-ups to confident smiles. Explore our treatments and prepare an appointment request.">
+  <title>Dental — Strong teeth. Confident smiles.</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/hero-white.webp" as="image">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="tooth" viewBox="0 0 32 38"><path d="M16 5C10 2 3 1 2 9c-1 6 3 11 4 17 1 5 1 9 4 9s3-14 6-14 3 14 6 14 3-4 4-9c1-6 5-11 4-17-1-8-8-7-14-4Z"/></symbol>
+      <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+      <symbol id="send" viewBox="0 0 24 24"><path d="m3 10 18-7-6 18-4-7-8-4Zm8 4L21 3"/></symbol>
+      <symbol id="phone" viewBox="0 0 24 24"><path d="M7 3 4 5c-4 4 11 19 15 15l2-3-5-4-2 2c-2-1-4-3-5-5l2-2-4-5Z"/></symbol>
+      <symbol id="shield" viewBox="0 0 32 38"><path d="m16 3 12 5v10c0 8-12 16-12 16S4 26 4 18V8l12-5Z"/><path d="m10 17 4 4 8-9"/></symbol>
+      <symbol id="award" viewBox="0 0 32 38"><path d="m16 2 4 3 5 1 1 5 3 4-3 4-1 5-5 1-4 3-4-3-5-1-1-5-3-4 3-4 1-5 5-1 4-3Z"/><circle cx="16" cy="15" r="7"/><path d="m8 25-2 11 7-4 3 4 2-9m6-2 2 11-7-4"/></symbol>
+      <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+      <symbol id="chevron" viewBox="0 0 24 24"><path d="m8 4 8 8-8 8"/></symbol>
+      <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    </defs>
+  </svg>
+
+  <main id="main" class="page-shell">
+    <section id="home" class="hero" aria-labelledby="hero-heading">
+      <header class="site-header">
+        <a class="brand" href="#home" aria-label="Dental home"><svg class="tooth-mark"><use href="#tooth"/></svg><span>DENTAL</span></a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#home" class="nav-link active" aria-current="page">Home</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-button" href="https://www.google.com/maps/search/?api=1&amp;query=Visakhapatnam%2C%20Andhra%20Pradesh%2C%20India" target="_blank" rel="noopener noreferrer" aria-label="Open Visakhapatnam in Google Maps (new tab)" title="Open location in Google Maps"><svg><use href="#send"/></svg></a>
+          <a class="icon-button" href="tel:+919876543210" aria-label="Call Dental" title="Call Dental"><svg><use href="#phone"/></svg></a>
+          <button class="icon-button menu-button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation"><svg><use href="#menu"/></svg></button>
+        </div>
+      </header>
+      <nav id="mobile-navigation" class="mobile-nav" aria-label="Mobile navigation" hidden>
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+      </nav>
+      <div class="hero-word" aria-hidden="true">DENTAL</div>
+      <img class="hero-tooth" src="assets/hero-white.webp" width="1536" height="1024" alt="A natural white molar on a silver display platform" fetchpriority="high">
+      <div class="hero-copy">
+        <h1 id="hero-heading"><strong>Strong teeth.</strong><span>Confident smile.</span></h1>
+        <div class="hero-buttons"><a class="button button-primary" href="#appointment">Book an appointment</a><a class="button button-outline" href="#about">Learn more</a></div>
+      </div>
+      <div class="hero-cards">
+        <div class="trust-card"><p>Care you<br>can trust</p><div class="avatars" aria-hidden="true"><span class="avatar avatar-one"></span><span class="avatar avatar-two"></span><span class="avatar avatar-three"></span></div></div>
+        <a class="explore-card" href="#services"><span>Explore our<br>services</span><img src="assets/dental-care.webp" width="1448" height="1086" alt="A dentist caring for a patient"><span class="round-arrow"><svg><use href="#arrow"/></svg></span></a>
+      </div>
+    </section>
+
+    <section id="about" class="why-section" aria-labelledby="why-heading">
+      <div class="care-image"><img src="assets/dental-care.webp" width="1448" height="1086" alt="A dentist gently examining a relaxed patient in a bright dental clinic" loading="lazy"></div>
+      <div class="why-copy">
+        <p class="section-label">Why choose Dental</p>
+        <h2 id="why-heading">Exceptional care<br>for healthier smiles.</h2>
+        <ul class="benefits interactive-benefits"><li><details name="why-benefit" class="benefit-details"><summary><span class="benefit-icon experience">25+</span><div><h3>25+ years experience</h3><p>And expertise in dental care.</p></div><span class="benefit-toggle" aria-hidden="true">+</span></summary><div class="benefit-more"><p>We take time to understand your concerns, explain your options and help you plan your next step.</p><a href="about.html">Meet our team <span aria-hidden="true">↗</span></a></div></details></li><li><details name="why-benefit" class="benefit-details"><summary><span class="benefit-icon"><svg><use href="#tooth"/></svg></span><div><h3>Advanced dental treatment</h3><p>Modern care, thoughtfully planned<br class="desktop-break"> around your smile.</p></div><span class="benefit-toggle" aria-hidden="true">+</span></summary><div class="benefit-more"><p>Explore our treatment areas and learn which options you can discuss at your consultation.</p><a href="services.html">Explore services <span aria-hidden="true">↗</span></a></div></details></li><li><details name="why-benefit" class="benefit-details"><summary><span class="benefit-icon"><svg><use href="#shield"/></svg></span><div><h3>Comfortable, safe and<br class="desktop-break"> hygienic environment</h3><p>Your health and comfort<br class="desktop-break"> always come first.</p></div><span class="benefit-toggle" aria-hidden="true">+</span></summary><div class="benefit-more"><p>Share any worries or preferences when requesting your appointment so the team can help you prepare.</p><a href="contact.html#booking-form">Plan your visit <span aria-hidden="true">↗</span></a></div></details></li></ul>
+      </div>
+    </section>
+
+    <section id="services" class="work-section" aria-labelledby="work-heading">
+      <div class="section-heading"><div><p class="section-label">Our work</p><h2 id="work-heading">Our work.</h2></div><p class="work-intro">Thoughtful care. <br>Naturally confident smiles.</p></div>
+      <div class="comparison" style="--reveal:50%">
+        <div class="comparison-picture comparison-before" role="img" aria-label="Illustrative smile before whitening"></div>
+        <div class="comparison-picture comparison-after" role="img" aria-label="Illustrative smile after whitening"></div>
+        <span class="comparison-tag before-tag">Before</span><span class="comparison-tag after-tag">After</span>
+        <span class="comparison-line" aria-hidden="true"><span class="comparison-handle"><svg><use href="#chevron"/></svg><svg><use href="#chevron"/></svg></span></span>
+        <label class="sr-only" for="smile-slider">Compare the illustrative before and after smile</label>
+        <input id="smile-slider" class="comparison-range" type="range" min="0" max="100" value="50" aria-valuetext="50% after image revealed">
+        <span class="image-caption">Illustrative imagery · individual results vary</span>
+      </div>
+      <div class="service-list work-gallery">
+        <details class="service" id="general-dentistry"><summary><span class="service-image thumb-general" aria-hidden="true"><svg viewBox="6 6 500 500" preserveAspectRatio="xMidYMid slice"><image href="assets/treatments.webp" width="1536" height="1024"/></svg></span><span class="service-copy"><span class="service-title">General Dentistry</span><span class="service-description">Comprehensive care for strong,<br>healthy teeth and gums.</span></span><span class="service-arrow"><svg><use href="#arrow"/></svg></span></summary><div class="service-detail"><p>Everyday care starts with understanding your smile. Explore routine examinations, professional cleaning and personalised guidance for your teeth and gums.</p><a href="#appointment" class="text-link" data-treatment="General Dentistry">Ask about general dentistry <svg><use href="#arrow"/></svg></a></div></details>
+        <details class="service" id="dental-implants"><summary><span class="service-image thumb-implants" aria-hidden="true"><svg viewBox="518 6 500 500" preserveAspectRatio="xMidYMid slice"><image href="assets/treatments.webp" width="1536" height="1024"/></svg></span><span class="service-copy"><span class="service-title">Dental Implants</span><span class="service-description">Explore your options<br>for replacing missing teeth.</span></span><span class="service-arrow"><svg><use href="#arrow"/></svg></span></summary><div class="service-detail"><p>Dental implants can be an option for replacing missing teeth. An individual assessment of your oral health helps determine suitability and a treatment plan.</p><a href="#appointment" class="text-link" data-treatment="Dental Implants">Discuss dental implants <svg><use href="#arrow"/></svg></a></div></details>
+        <details class="service" id="root-canal"><summary><span class="service-image thumb-root" aria-hidden="true"><svg viewBox="1030 6 500 500" preserveAspectRatio="xMidYMid slice"><image href="assets/treatments.webp" width="1536" height="1024"/></svg></span><span class="service-copy"><span class="service-title">Root Canal</span><span class="service-description">Care focused on preserving<br>your natural teeth.</span></span><span class="service-arrow"><svg><use href="#arrow"/></svg></span></summary><div class="service-detail"><p>A consultation can help assess whether root canal treatment is appropriate for a damaged or infected tooth. We’ll explain your options and what to expect.</p><a href="#appointment" class="text-link" data-treatment="Root Canal">Ask about root canal care <svg><use href="#arrow"/></svg></a></div></details>
+        <details class="service" id="cosmetic-dentistry"><summary><span class="service-image thumb-cosmetic" aria-hidden="true"><svg viewBox="6 518 500 500" preserveAspectRatio="xMidYMid slice"><image href="assets/treatments.webp" width="1536" height="1024"/></svg></span><span class="service-copy"><span class="service-title">Cosmetic Dentistry</span><span class="service-description">Thoughtfully considered care<br>for a naturally confident smile.</span></span><span class="service-arrow"><svg><use href="#arrow"/></svg></span></summary><div class="service-detail"><p>Tell us what you’d like to change about your smile. A consultation explores your goals, your oral health and suitable cosmetic treatment options.</p><a href="#appointment" class="text-link" data-treatment="Cosmetic Dentistry">Explore cosmetic care <svg><use href="#arrow"/></svg></a></div></details>
+        <details class="service" id="teeth-whitening"><summary><span class="service-image thumb-whitening" aria-hidden="true"><svg viewBox="518 518 500 500" preserveAspectRatio="xMidYMid slice"><image href="assets/treatments.webp" width="1536" height="1024"/></svg></span><span class="service-copy"><span class="service-title">Teeth Whitening</span><span class="service-description">Professional advice for<br>a brighter-looking smile.</span></span><span class="service-arrow"><svg><use href="#arrow"/></svg></span></summary><div class="service-detail"><p>Professional advice helps you understand whitening options, suitability and sensitivity considerations. The shade change achieved varies from person to person.</p><a href="#appointment" class="text-link" data-treatment="Teeth Whitening">Ask about teeth whitening <svg><use href="#arrow"/></svg></a></div></details>
+        <details class="service" id="kids-dental-care"><summary><span class="service-image thumb-kids" aria-hidden="true"><svg viewBox="1030 518 500 500" preserveAspectRatio="xMidYMid slice"><image href="assets/treatments.webp" width="1536" height="1024"/></svg></span><span class="service-copy"><span class="service-title">Kids Dental Care</span><span class="service-description">Gentle, friendly care<br>for healthy little smiles.</span></span><span class="service-arrow"><svg><use href="#arrow"/></svg></span></summary><div class="service-detail"><p>Help your child feel at home in the dental chair. Friendly visits, preventive care and age-appropriate guidance encourage healthy habits as they grow.</p><a href="#appointment" class="text-link" data-treatment="Kids Dental Care">Plan your child’s visit <svg><use href="#arrow"/></svg></a></div></details>
+      </div>
+    </section>
+
+    <section id="appointment" class="appointment-section" aria-labelledby="appointment-heading">
+      <div class="appointment-banner">
+        <div class="appointment-copy"><p class="section-label">Book an appointment</p><h2 id="appointment-heading">Your smile<br>deserves<br>exceptional care.</h2><p>Let’s take the next step together.</p><a href="#booking-form" class="button button-white" id="booking-toggle" aria-expanded="false" aria-controls="booking-panel">Book an appointment <svg><use href="#arrow"/></svg></a></div>
+      </div>
+      <div id="booking-panel" class="booking-panel" hidden>
+        <div class="booking-intro"><h3>Let’s plan your visit.</h3><p>Prepare your appointment request below. This preview is not connected to a clinic, so your request won’t be sent or confirmed.</p></div>
+        <form id="booking-form">
+          <div class="form-grid"><label>Full name<input name="name" autocomplete="name" required maxlength="100" placeholder="Your name"></label><label>Email address<input name="email" type="email" autocomplete="email" required maxlength="200" placeholder="you@example.com"></label><label>Treatment<select name="treatment" id="treatment"><option>General Dentistry</option><option>Root Canal</option><option>Dental Implants</option><option>Cosmetic Dentistry</option><option>Teeth Whitening</option><option>Kids Dental Care</option><option>Not sure — I’d like advice</option></select></label><label>Preferred date<input id="preferred-date" name="date" type="date" required></label></div>
+          <label class="notes-label">Anything you’d like us to know? <span>(optional)</span><textarea name="notes" rows="3" maxlength="1500" placeholder="Share your preferences; please leave out sensitive medical information."></textarea></label>
+          <div class="form-bottom"><p>Your details stay in this page. Nothing is sent or stored.</p><button class="button button-primary" type="submit">Prepare my request <svg><use href="#arrow"/></svg></button></div>
+        </form>
+        <div id="request-result" class="request-result" role="status" hidden><h3>Your request draft is ready.</h3><p id="request-summary"></p><p>Download the details to share with your clinic. Your appointment still needs to be confirmed.</p><button class="button button-primary" id="download-request" type="button">Download request</button></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="footer">
+    <div class="footer-main"><div><a class="brand" href="#home"><svg class="tooth-mark"><use href="#tooth"/></svg><span>DENTAL</span></a><p>Care for every smile.</p></div><nav class="footer-nav" aria-label="Footer navigation"><h3>Explore</h3><a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></nav><nav class="footer-treatments" aria-label="Treatment navigation"><h3>Our care</h3><a href="#general-dentistry">General Dentistry</a><a href="#dental-implants">Dental Implants</a><a href="#root-canal">Root Canal</a><a href="#cosmetic-dentistry">Cosmetic Dentistry</a><a href="#teeth-whitening">Teeth Whitening</a><a href="#kids-dental-care">Kids Dental Care</a></nav><div class="footer-contact"><h3>Get in touch</h3><p>Contact our team</p><a class="button button-outline" href="#appointment">Book an appointment <svg><use href="#arrow"/></svg></a></div></div>
+    <div class="footer-signature" aria-hidden="true">DENTAL</div>
+    <div class="footer-bottom"><span>© <span id="year">2026</span> Dental. All rights reserved.</span><span class="footer-disclosure">Illustrative clinic and treatment imagery.</span><button class="privacy-button" id="privacy-open" type="button">Privacy</button></div>
+  </footer>
+  <dialog id="privacy-dialog" aria-labelledby="privacy-title"><button class="icon-button dialog-close" id="privacy-close" type="button" aria-label="Close privacy information"><svg><use href="#close"/></svg></button><h2 id="privacy-title">Your privacy</h2><p>This local website preview uses no analytics, cookies or external booking services. The appointment form processes your details only in this page to prepare a downloadable text file. Nothing is submitted or saved by the website.</p><p>Images are illustrative and do not represent actual patient outcomes or clinic staff.</p></dialog>
+</body>
+</html>

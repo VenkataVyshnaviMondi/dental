@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+!.env.example
+.impeccable/
+output/
+tmp/
+*.zip
+/*-page.png
