@@ -1,0 +1,65 @@
+import { createRequire } from 'node:module';
+import path from 'node:path';
+import os from 'node:os';
+import assert from 'node:assert/strict';
+import { mkdir } from 'node:fs/promises';
+const require = createRequire(import.meta.url);
+const runtime = path.join(os.homedir(), '.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules');
+const { chromium } = require(require.resolve('playwright', { paths:[process.cwd(),runtime] }));
+const browser = await chromium.launch({headless:true,channel:'msedge'});
+const page = await browser.newPage({viewport:{width:1440,height:960},acceptDownloads:true});
+const errors=[];
+page.on('pageerror', e=>errors.push(e.message));
+page.on('response', r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`)});
+await mkdir('.impeccable/review/pages',{recursive:true});
+for (const route of ['index','services','about','contact']) {
+  await page.goto(`http://localhost:4173/${route}.html`,{waitUntil:'networkidle'});
+  assert.deepEqual(await page.locator('.main-nav a').allTextContents(),['Services','About','Contact']);
+  assert.equal(await page.locator('.brand').first().getAttribute('href'),'index.html');
+  if(route!=='index') assert.equal(await page.locator('.main-nav [aria-current=page]').getAttribute('href'),`${route}.html`);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  await page.screenshot({path:`.impeccable/review/pages/${route}-desktop.png`,fullPage:true});
+}
+await page.goto('http://localhost:4173/');
+assert.equal(await page.locator('#about').count(),1);
+assert.equal(await page.locator('#home + #about').count(),1);
+assert.equal(await page.locator('#about + #services').count(),1);
+assert.equal(await page.locator('.home-service-card').count(),6);
+await page.locator('.home-service-card[href="services.html#root-canal"]').click();
+await page.waitForURL(/services\.html#root-canal$/);
+assert.match(await page.locator('#root-canal').getAttribute('href'),/contact\.html\?treatment=Root%20Canal/);
+await page.goto('http://localhost:4173/');
+await page.locator('.main-nav a[href="services.html"]').click();
+assert.match(page.url(),/services\.html$/);
+assert.equal(await page.locator('.service').count(),6);
+assert.equal(await page.locator('.services-hero').count(),1);
+assert.equal(await page.locator('#smile-slider').count(),0);
+await page.locator('#root-canal').click();
+await page.waitForURL(/contact\.html/);
+assert.equal(await page.locator('#treatment').inputValue(),'Root Canal');
+assert.equal(await page.locator('#booking-panel').isVisible(),true);
+await page.locator('[name=name]').fill('Example Visitor');
+await page.locator('[name=email]').fill('visitor@example.com');
+await page.locator('[name=phone]').fill('9876543210');
+await page.locator('[name=doctor]').selectOption('Any available dentist');
+await page.locator('[name=time]').fill('10:30');
+const d=new Date();d.setDate(d.getDate()+7);
+await page.locator('[name=date]').fill(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`);
+await page.locator('[type=submit]').click();
+assert.equal(await page.locator('#request-result').isVisible(),true);
+const download=page.waitForEvent('download');await page.locator('#download-request').click();assert.equal((await download).suggestedFilename(),'dental-appointment-request.txt');
+await page.locator('.brand').first().click();assert.match(page.url(),/index\.html$/);
+await page.locator('#privacy-open').click();assert.equal(await page.locator('#privacy-dialog').isVisible(),true);await page.keyboard.press('Escape');
+for(const route of ['index','services','about','contact']){
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(`http://localhost:4173/${route}.html`,{waitUntil:'networkidle'});
+  await page.screenshot({path:`.impeccable/review/pages/${route}-mobile.png`,fullPage:true});
+  for(const width of [320,390,773]){await page.setViewportSize({width,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,`${route} at ${width}`)}
+}
+await page.setViewportSize({width:390,height:844});
+await page.goto('http://localhost:4173/');await page.locator('.menu-button').click();
+assert.deepEqual(await page.locator('#mobile-navigation a').allTextContents(),['Services','About','Contact']);
+await page.locator('#mobile-navigation a[href="about.html"]').click();await page.waitForURL(/about\.html$/);
+assert.deepEqual(errors,[]);
+console.log('PASS: four separate pages, three-link navbar, logo home navigation, active-page state, cross-page treatment selection, form/download, privacy, mobile navigation and responsive overflow checks.');
+await browser.close();

@@ -1,0 +1,37 @@
+<section class="contact-layout" aria-labelledby="contact-heading">
+  <div class="contact-story">
+    <p class="contact-eyebrow">Contact us</p>
+    <h1 id="contact-heading">Your next smile<br><span>starts here.</span></h1>
+    <p class="contact-lead">Let’s find the right care for you.</p>
+    <img class="contact-art" src="assets/contact-smile.webp" width="1254" height="1254" alt="A smiling woman beside a white tooth and dental mirror">
+    <p class="contact-tagline"><strong>Thoughtful care.</strong><br>A comfortable experience.</p>
+    <div class="contact-location" aria-label="Clinic contact details">
+      <div class="contact-location-info">
+        <div class="contact-detail-card"><span class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a15 15 0 0 1-7-7l2-2-2-5Z"/></svg></span><div><span class="contact-detail-label">Call us <small>Sample number</small></span><a class="contact-phone" href="tel:+919876543210">+91 98765 43210</a></div></div>
+        <div class="contact-detail-card"><span class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><span class="contact-detail-label">Visit our clinic</span><address>Visakhapatnam,<br>Andhra Pradesh, India</address></div></div>
+      </div>
+      <a class="contact-mini-map" href="https://www.google.com/maps/search/?api=1&amp;query=Visakhapatnam%2C%20Andhra%20Pradesh%2C%20India" target="_blank" rel="noopener noreferrer" aria-label="Open Visakhapatnam in Google Maps (new tab)">
+        <svg class="contact-map-art" viewBox="0 0 210 200" aria-hidden="true"><rect width="210" height="200" fill="#edf5f9"/><path d="M170 0 150 48 166 94 147 141 159 200H210V0Z" fill="#c1e7fa"/><path d="M-10 40 140 110M20 0 100 200M-10 145 169 32M-10 182 168 115" stroke="#fff" stroke-width="13"/><path d="M-10 40 140 110M20 0 100 200M-10 145 169 32" stroke="#d8e5ee" stroke-width="1.5"/><circle cx="105" cy="85" r="27" fill="#0878ef" opacity=".1"/><path d="M119 80c0 11-14 23-14 23S91 91 91 80a14 14 0 1 1 28 0Z" fill="#0878ef"/><circle cx="105" cy="80" r="5" fill="white"/></svg><strong class="contact-map-city">Visakhapatnam</strong>
+        <span>Open in Google Maps <span aria-hidden="true">↗</span></span>
+      </a>
+    </div>
+  </div>
+  <div id="booking-panel" class="contact-form-card">
+    <h2>Book your visit.</h2>
+    <form id="booking-form" aria-describedby="booking-note">
+      <div class="contact-fields">
+        <label>Full Name<input name="name" autocomplete="name" required maxlength="100" placeholder="Your name"></label>
+        <label>Phone Number<input name="phone" type="tel" autocomplete="tel" required maxlength="30" placeholder="+91 98765 43210"></label>
+        <label class="field-wide">Email<input name="email" type="email" autocomplete="email" required maxlength="200" placeholder="you@example.com"></label>
+        <label>Service<select name="treatment" id="treatment" required><option value="" disabled selected>Select service</option><option>General Dentistry</option><option value="Root Canal">Root Canal Treatment</option><option>Dental Implants</option><option>Cosmetic Dentistry</option><option>Teeth Whitening</option><option>Kids Dental Care</option><option>Not sure — I’d like advice</option></select></label>
+        <label>Doctor<select name="doctor" required><option value="" disabled selected>Select doctor</option><option>Any available dentist</option><option>Prosthodontic specialist</option><option>Dental surgeon</option></select></label>
+        <label>Preferred Date<input id="preferred-date" name="date" type="date" required></label>
+        <label>Preferred Time<input name="time" type="time" required></label>
+        <label class="field-wide">Message<textarea name="notes" rows="3" maxlength="1500" placeholder="Tell us briefly about your symptoms or preference"></textarea></label>
+      </div>
+      <button class="contact-submit" type="submit">Book appointment <span aria-hidden="true">↗</span></button>
+      <p id="booking-note" class="contact-form-note">Preview form: creates a request draft. Nothing is sent or booked.</p>
+    </form>
+    <div id="request-result" class="request-result" role="status" hidden><h3>Your request draft is ready.</h3><p id="request-summary"></p><p>Download your details to share with your clinic. Your appointment still needs confirmation.</p><button class="button button-primary" id="download-request" type="button">Download request</button></div>
+  </div>
+</section>
