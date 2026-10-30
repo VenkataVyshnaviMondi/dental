@@ -4,9 +4,10 @@
   "private": true,
   "description": "Responsive Dental clinic homepage",
   "scripts": {
+    "build": "node scripts/build-site.mjs",
     "start": "node server.mjs",
     "dev": "node server.mjs",
-    "test": "node --test tests/server.test.mjs"
+    "test": "node --test tests/server.test.mjs tests/static-build.test.mjs"
   },
   "engines": { "node": ">=18" }
 }

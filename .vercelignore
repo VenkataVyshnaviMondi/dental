@@ -1,0 +1,15 @@
+.git/
+.impeccable/
+output/
+tmp/
+node_modules/
+dist/
+*.zip
+/*-page.png
+/template.png
+server.mjs
+tests/
+DESIGN.md
+PRODUCT.md
+.env
+.env.*

@@ -36,6 +36,12 @@ The form creates a downloadable request draft. It does not send, store or confir
 
 The telephone number is a sample. The location points to Visakhapatnam rather than a confirmed clinic street address. Doctor names, portraits, reviews and treatment comparisons are illustrative. Replace them with verified clinic details and authorised content before launch.
 
+## Deploy to Vercel
+
+Import the repository with Framework Preset **Other**. The included `vercel.json` builds with `npm run build` and serves only `dist/`. The local `server.mjs` is for previewing on your computer; Vercel does not need a Node function for this website.
+
+After updating these files in your Git repository, redeploy the latest commit. The `/services`, `/about` and `/contact` routes and their `.html` equivalents are supported.
+
 ## Checks
 
 ```sh
