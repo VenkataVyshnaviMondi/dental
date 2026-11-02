@@ -6,7 +6,7 @@ import './build-pages.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
 const publicFiles = ['index.html', 'services.html', 'about.html', 'contact.html', 'styles.css', 'app.js'];
-const assetExtensions = new Set(['.png', '.webp', '.jpg', '.jpeg', '.svg', '.ico', '.woff', '.woff2']);
+const assetExtensions = new Set(['.png', '.webp', '.jpg', '.jpeg', '.svg', '.ico', '.woff', '.woff2', '.mp4']);
 
 if (path.dirname(output) !== root || path.basename(output) !== 'dist') throw new Error('Invalid build output path');
 await rm(output, { recursive: true, force: true });

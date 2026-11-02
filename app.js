@@ -61,7 +61,7 @@ bookingForm?.addEventListener('submit', event => {
   if (!String(data.get('name')).trim()) { bookingForm.elements.name.setCustomValidity('Please enter your name.'); bookingForm.elements.name.reportValidity(); return; }
   if (!bookingForm.reportValidity()) return;
   const preferred = new Date(String(data.get('date')) + 'T12:00:00').toLocaleDateString(undefined, { day:'numeric', month:'long', year:'numeric' });
-  requestDraft = `DENTAL — APPOINTMENT REQUEST DRAFT\n\nName: ${String(data.get('name')).trim()}\nPhone: ${data.get('phone') || 'Not provided'}\nEmail: ${data.get('email')}\nDoctor: ${data.get('doctor') || 'Any available dentist'}\nPreferred time: ${data.get('time') || 'Not specified'}\nTreatment: ${data.get('treatment')}\nPreferred date: ${preferred}\nNotes: ${String(data.get('notes')).trim() || 'None'}\n\nThis request has not been sent. Please share it directly with your clinic to arrange and confirm an appointment.\n`;
+  requestDraft = `VENKAT HAPPY DENTAL — APPOINTMENT REQUEST DRAFT\n\nName: ${String(data.get('name')).trim()}\nPhone: ${data.get('phone') || 'Not provided'}\nEmail: ${data.get('email')}\nDoctor: ${data.get('doctor') || 'Any available dentist'}\nPreferred time: ${data.get('time') || 'Not specified'}\nTreatment: ${data.get('treatment')}\nPreferred date: ${preferred}\nNotes: ${String(data.get('notes')).trim() || 'None'}\n\nThis request has not been sent. Please share it directly with your clinic to arrange and confirm an appointment.\n`;
   document.querySelector('#request-summary').textContent = `${String(data.get('name')).trim()}, your draft is for ${data.get('treatment')} on ${preferred}.`;
   const result = document.querySelector('#request-result');
   result.hidden = false;
@@ -97,12 +97,13 @@ document.querySelector('#year').textContent = new Date().getFullYear();
 const testimonialSection = document.querySelector('#testimonials');
 if (testimonialSection) {
   const reviews = [
-    'Everything was explained clearly, and I felt comfortable throughout my visit.',
-    'Friendly, thoughtful care from the moment I arrived.',
-    'A gentle approach that helped my child feel at ease.'
+    { quote: 'The doctors and staff were professional, patient.', author: 'Venkatesh Mamidi' },
+    { quote: 'Dr Sandeep is very polite, explanatory and patient.', author: 'Sastry Saku' },
+    { quote: 'Crispy, precise, smooth and painless treatment.', author: 'Sai Dileep' }
   ];
   const card = testimonialSection.querySelector('.testimonial-card');
   const quote = testimonialSection.querySelector('#testimonial-quote');
+  const author = testimonialSection.querySelector('#testimonial-author');
   const portrait = testimonialSection.querySelector('.testimonial-portrait');
   const progress = testimonialSection.querySelector('.testimonial-progress');
   const pause = testimonialSection.querySelector('#testimonial-pause');
@@ -125,13 +126,14 @@ if (testimonialSection) {
   }
   function show(index, manual = false) {
     current = (index + reviews.length) % reviews.length;
-    quote.textContent = reviews[current];
+    quote.textContent = reviews[current].quote;
+    author.textContent = reviews[current].author;
     portrait.style.backgroundPosition = `${current * 50}% center`;
     card.setAttribute('aria-label', `Review ${current + 1} of ${reviews.length}`);
     dots.forEach((dot,i) => { if (i === current) dot.setAttribute('aria-current','true'); else dot.removeAttribute('aria-current'); });
     entrance?.cancel();
     if (!reducedMotion.matches) entrance = card.animate([{opacity:.45,transform:'translateX(12px)'},{opacity:1,transform:'translateX(0)'}],{duration:320,easing:'ease-out'});
-    if (manual) testimonialSection.querySelector('.testimonial-announcement').textContent = `Sample review ${current + 1} of ${reviews.length}: ${reviews[current]}`;
+    if (manual) testimonialSection.querySelector('.testimonial-announcement').textContent = `Review ${current + 1} of ${reviews.length} by ${reviews[current].author}: ${reviews[current].quote}`;
     schedule();
   }
   function updatePause() {
@@ -202,4 +204,31 @@ if (bookingForm) document.querySelector('.floating-booking')?.addEventListener('
   event.preventDefault();
   bookingForm.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',block:'start'});
   bookingForm.elements.name.focus({preventScroll:true});
+});
+
+// Clinic videos play quietly only while visible and respect playback preferences.
+document.querySelectorAll('video[data-clinic-video]').forEach(clinicVideo => {
+  const reducedVideoMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let inView = false;
+  let userPaused = false;
+  let automaticPause = false;
+  clinicVideo.muted = true;
+  function syncClinicVideo() {
+    if (!inView || document.hidden || reducedVideoMotion.matches) {
+      if (!clinicVideo.paused) {
+        automaticPause = true;
+        clinicVideo.pause();
+      }
+    } else if (!userPaused) {
+      clinicVideo.play().catch(() => {});
+    }
+  }
+  clinicVideo.addEventListener('pause', () => {
+    if (automaticPause) automaticPause = false;
+    else if (inView && !document.hidden) userPaused = true;
+  });
+  clinicVideo.addEventListener('play', () => { userPaused = false; });
+  new IntersectionObserver(entries => { inView = entries[0].isIntersecting; syncClinicVideo(); }, {threshold:.2}).observe(clinicVideo);
+  document.addEventListener('visibilitychange', syncClinicVideo);
+  reducedVideoMotion.addEventListener('change', syncClinicVideo);
 });

@@ -36,7 +36,7 @@ function intro(title, text) {
   return `<div class="page-intro"><h1>${title}</h1><p>${text}</p></div>`;
 }
 function shell(page, title, description, content) {
-  const pageHead = head.replace(/<title>.*?<\/title>/, `<title>${title} — Dental</title>`)
+  const pageHead = head.replace(/<title>.*?<\/title>/, `<title>${title} — Venkat Happy Dental</title>`)
     .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${description}">`)
     .replace(/\s*<link rel="preload"[^>]*>/,'');
   return `${pageHead}<body class="inner-page ${page}-page"><a class="skip-link" href="#main">Skip to content</a>${symbols}${['services','about'].includes(page) ? '' : `<div class="inner-header">${pageHeader(page)}${mobile}</div>`}<main id="main" class="page-shell">${content}</main>${footer}${floatingBooking}${dialog}</body></html>`;
@@ -59,7 +59,8 @@ const homeTreatments = [
 ];
 const homeServices = `<section id="services" class="home-services" aria-labelledby="home-services-heading"><div class="home-services-heading"><div><h2 id="home-services-heading">Services for every smile.</h2><p>From everyday check-ups to your next step in dental care.</p></div><a class="text-link" href="services.html">View all services <svg><use href="#arrow"/></svg></a></div><div class="home-services-grid">${homeTreatments.map(([id,title,description,x,y])=>`<a class="home-service-card" href="services.html#${id}"><span class="home-service-photo" aria-hidden="true"><svg viewBox="${x} ${y} 500 500" preserveAspectRatio="xMidYMid slice"><image href="assets/treatments.webp" width="1536" height="1024"/></svg></span><span class="home-service-body"><h3>${title}</h3><p>${description}</p><span class="home-service-link">Explore treatment <svg><use href="#arrow"/></svg></span></span></a>`).join('')}</div></section>`;
 // Two service-specific homepage photos, preserving the existing circular crops.
-const homeServicesWithPhotos = homeServices.replace(/(<a class="home-service-card" href="services.html#(root-canal|cosmetic-dentistry)">[\s\S]*?<span class="home-service-photo" aria-hidden="true">)[\s\S]*?(<\/span><span class="home-service-body">)/g, (_,start,id,end) => `${start}<svg viewBox="${id === 'root-canal' ? 0 : 887} 0 887 887" preserveAspectRatio="xMidYMid slice"><image href="assets/home-treatment-details.webp" width="1774" height="887"/></svg>${end}`);
+let homeServicesWithPhotos = homeServices.replace(/(<a class="home-service-card" href="services.html#(root-canal|cosmetic-dentistry)">[\s\S]*?<span class="home-service-photo" aria-hidden="true">)[\s\S]*?(<\/span><span class="home-service-body">)/g, (_,start,id,end) => `${start}<svg viewBox="${id === 'root-canal' ? 0 : 887} 0 887 887" preserveAspectRatio="xMidYMid slice"><image href="assets/home-treatment-details.webp" width="1774" height="887"/></svg>${end}`);
+homeServicesWithPhotos = homeServicesWithPhotos.replace(/(<a class="home-service-card" href="services.html#general-dentistry">[\s\S]*?<span class="home-service-photo" aria-hidden="true">)[\s\S]*?(<\/span><span class="home-service-body">)/, (_,start,end) => `${start}<img class="clinic-treatment-photo" src="assets/clinic-treatment.webp" width="1360" height="907" loading="lazy" decoding="async" alt="">${end}`);
 const testimonials = await readFile(path.join(root,'templates','testimonials.html'),'utf8');
 const home = `${head}<body class="home-page"><a class="skip-link" href="#main">Skip to content</a>${symbols}<main id="main" class="page-shell">${hero}${section('about')}${homeServicesWithPhotos}${testimonials}${homeAppointment}</main>${footer}${floatingBooking}${dialog}</body></html>`;
 
@@ -77,7 +78,7 @@ services = services.replace(/<details class="service" id="([^"]+)">([\s\S]*?)<\/
 services = services.replace(/(<a class="service" id="(root-canal|cosmetic-dentistry)"[\s\S]*?<span class="service-image[^"]*" aria-hidden="true">)[\s\S]*?(<\/span><span class="service-copy">)/g, (_,start,id,end) => `${start}<svg viewBox="${id === 'root-canal' ? 0 : 887} 0 887 887" preserveAspectRatio="xMidYMid slice"><image href="assets/home-treatment-details.webp" width="1774" height="887"/></svg>${end}`);
 const servicesHero = `<section class="services-hero services-home-style" aria-labelledby="services-title">${pageHeader('services')}${mobile}<div class="services-concept-copy"><p class="section-label">Care for every smile</p><h1 id="services-title">Your smile.<br>Our expertise.</h1><p>Explore dental care for every stage of life.</p><a class="button button-primary" href="contact.html#booking-form">Book an appointment <svg><use href="#arrow"/></svg></a></div></section>`;
 let aboutContent = await readFile(path.join(root,'templates','about.html'),'utf8');
-aboutContent = aboutContent.replace(/<section class="about-hero"[\s\S]*?<\/section>/, `<section class="services-hero services-home-style about-matched-hero" aria-labelledby="about-title">${pageHeader('about')}${mobile}<div class="services-concept-copy"><p class="section-label">Get to know Dental</p><h1 id="about-title">Your smile,<br>our priority.</h1><p>Experienced care. Thoughtful dentistry. Every smile matters.</p><a class="button button-primary" href="contact.html#booking-form">Book an appointment <svg><use href="#arrow"/></svg></a></div></section>`);
+aboutContent = aboutContent.replace(/<section class="about-hero"[\s\S]*?<\/section>/, `<section class="services-hero services-home-style about-matched-hero" aria-labelledby="about-title">${pageHeader('about')}${mobile}<div class="services-concept-copy"><p class="section-label">Get to know Venkat Happy Dental</p><h1 id="about-title">Your smile,<br>our priority.</h1><p>Experienced care. Thoughtful dentistry. Every smile matters.</p><a class="button button-primary" href="contact.html#booking-form">Book an appointment <svg><use href="#arrow"/></svg></a></div></section>`);
 const contactContent = await readFile(path.join(root,'templates','contact.html'),'utf8');
 let booking = section('appointment').replace('id="booking-panel" class="booking-panel" hidden','id="booking-panel" class="booking-panel"');
 booking = booking.replace('aria-expanded="false"', 'aria-expanded="true"');
@@ -85,7 +86,7 @@ booking = booking.replace('aria-expanded="false"', 'aria-expanded="true"');
 await Promise.all([
   writeFile(path.join(root,'index.html'), home),
   writeFile(path.join(root,'services.html'), shell('services','Services','Explore general dentistry, implants, root canal, cosmetic dentistry, teeth whitening and kids dental care.',servicesHero + services)),
-  writeFile(path.join(root,'about.html'), shell('about','About us','Get to know Dental: experienced care, modern treatment and a comfortable, hygienic environment.',aboutContent)),
+  writeFile(path.join(root,'about.html'), shell('about','About us','Get to know Venkat Happy Dental: experienced care, modern treatment and a comfortable, hygienic environment.',aboutContent)),
   writeFile(path.join(root,'contact.html'), shell('contact','Contact','Prepare an appointment request and take the next step towards your dental visit.',contactContent))
 ]);
 console.log('Built Home, Services, About and Contact as four separate HTML documents.');
